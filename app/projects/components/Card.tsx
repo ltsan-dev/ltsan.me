@@ -28,9 +28,9 @@ type TiltLayerProps = {
 const TRANS_MS: number = 250;
 
 export default function Card({cardData, chosenData, setChosenCard, setCards }: CardProps) {
-  const [clicked, setClicked] = useState(false);
-  const [flipped, setFlipped] = useState(false);
   const chosen = chosenData !== null && cardData.id === chosenData.id;
+  const [clicked, setClicked] = useState(false);
+  const [flipped, setFlipped] = useState(chosen);
 
   useEffect(() => {
     if (!chosen) return;

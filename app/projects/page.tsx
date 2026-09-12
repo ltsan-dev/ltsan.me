@@ -6,12 +6,14 @@ import { AnimatePresence, motion } from "motion/react"
 
 import Deck from '@/app/projects/components/Deck';
 import Card from '@/app/projects/components/Card';
+import Legend from '@/app/projects/components/Legend';
 
 import clsx from 'clsx';
 import { useState, useEffect, useRef } from 'react';
 
 import { Card as CardType } from '@/app/lib/definitions';
 import cardsData from '../lib/cards';
+import TechList from './components/TechList';
 
 
 export default function Page() {
@@ -19,6 +21,19 @@ export default function Page() {
   const [cards, setCards] = useState<CardType[]>(cardsData);
   const [chosenCard, setChosenCard] = useState<CardType | null>(null);
   const prevCardCount = useRef(cards.length);
+
+  const animationOptions = {
+    layout: true,
+    initial: { opacity: 0, y: 40, rotate: -5 },
+    animate: { opacity: 1, y: 0, rotate: 0 },
+    exit: { opacity: 0, y: 40, rotate: 5 },
+    transition: {
+      layout: { type: "spring", stiffness: 100, damping: 20 },
+      opacity: { duration: 0.2 },
+      y: { type: "spring", stiffness: 100, damping: 20 },
+      rotate: { duration: 0.5 },
+    }
+  };
 
   useEffect(() => {
     document.body.classList.toggle("bodyDim", !gameOn);
@@ -29,6 +44,7 @@ export default function Page() {
     if (!chosenCard) document.body.style.backgroundColor = "";
     prevCardCount.current = cards.length;
   }, [cards.length]);
+  
 
   function drawCard() {
     const newCard:CardType = {
@@ -67,6 +83,34 @@ export default function Page() {
     <Deck username="Lance" setGameOn={setGameOn} gameOn={gameOn} drawCard={drawCard} image={"/images/personal/nrt-ramen.gif"} />
     {gameOn && <motion.div layout className={clsx(projectsCSS.handContainer, { [projectsCSS.gameOn]: gameOn })}>
       <AnimatePresence mode="popLayout">
+        <motion.div
+            layout
+            className={projectsCSS.legendMotionDiv}
+            initial={{ opacity: 0, y: 40, rotate: -5 }}
+            animate={{ opacity: 1, y: 0, rotate: 0 }}
+            exit={{ opacity: 0, y: 40, rotate: 5, transition: { delay: 0 } }}
+            transition={{
+              layout: { type: "spring", stiffness: 100, damping: 20, },
+              opacity: { duration: 0.2 },
+              y: { type: "spring", stiffness: 100, damping: 20 },
+              rotate: { duration: 0.5 },
+            }}>
+              <Legend />
+        </motion.div>
+        <motion.div
+            layout
+            className={projectsCSS.techlistMotionDiv}
+            initial={{ opacity: 0, y: 40, rotate: -5 }}
+            animate={{ opacity: 1, y: 0, rotate: 0 }}
+            exit={{ opacity: 0, y: 40, rotate: 5, transition: { delay: 0 } }}
+            transition={{
+              layout: { type: "spring", stiffness: 100, damping: 20, },
+              opacity: { duration: 0.2 },
+              y: { type: "spring", stiffness: 100, damping: 20 },
+              rotate: { duration: 0.5 },
+            }}>
+              <TechList />
+        </motion.div>
         {cards.map((item, i) => (
           <motion.div
             layout key={item.id}

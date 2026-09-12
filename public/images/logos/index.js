@@ -1,0 +1,15 @@
+export { default as azure } from "./Azure-logo.svg";
+export { default as css } from "./CSS-logo.svg";
+export { default as express } from "./Express-logo.svg";
+export { default as figma } from "./Figma-logo.svg";
+export { default as firebase } from "./Firebase-logo.svg";
+export { default as git } from "./Git-logo.svg";
+export { default as html } from "./HTML-logo.svg";
+export { default as javascript } from "./JavaScript-logo.svg";
+export { default as mongodb } from "./MongoDB-logo.svg";
+export { default as mongoose } from "./Mongoose-logo.svg";
+export { default as node } from "./Node.js-logo.svg";
+export { default as p5 } from "./P5.js-logo.svg";
+export { default as r } from "./R-logo.svg";
+export { default as react } from "./React-logo.svg";
+export { default as sql } from "./SQL-logo.svg";
