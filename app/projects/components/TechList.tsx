@@ -10,8 +10,8 @@ export default function() {
     return <div className={projectsCSS.techlist}>
       <h2>Tech</h2>
       <div>
-        {Object.entries(images).map(([name, image]) => (
-          <div key={name}>
+        {Object.entries(images).map(([name, image], i) => (
+          <div key={i}>
             <Image src={image} alt={`${name} logo`} />
             <span>{name}</span>
           </div>

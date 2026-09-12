@@ -85,29 +85,31 @@ export default function Page() {
       <AnimatePresence mode="popLayout">
         <motion.div
             layout
+            key="legend"
             className={projectsCSS.legendMotionDiv}
             initial={{ opacity: 0, y: 40, rotate: -5 }}
             animate={{ opacity: 1, y: 0, rotate: 0 }}
             exit={{ opacity: 0, y: 40, rotate: 5, transition: { delay: 0 } }}
             transition={{
               layout: { type: "spring", stiffness: 100, damping: 20, },
-              opacity: { duration: 0.2 },
+              opacity: { duration: 0.5 },
               y: { type: "spring", stiffness: 100, damping: 20 },
-              rotate: { duration: 0.5 },
+              rotate: { duration: 1 },
             }}>
               <Legend />
         </motion.div>
         <motion.div
             layout
+            key="techlist"
             className={projectsCSS.techlistMotionDiv}
             initial={{ opacity: 0, y: 40, rotate: -5 }}
             animate={{ opacity: 1, y: 0, rotate: 0 }}
             exit={{ opacity: 0, y: 40, rotate: 5, transition: { delay: 0 } }}
             transition={{
               layout: { type: "spring", stiffness: 100, damping: 20, },
-              opacity: { duration: 0.2 },
+              opacity: { duration: 0.5 },
               y: { type: "spring", stiffness: 100, damping: 20 },
-              rotate: { duration: 0.5 },
+              rotate: { duration: 1 },
             }}>
               <TechList />
         </motion.div>

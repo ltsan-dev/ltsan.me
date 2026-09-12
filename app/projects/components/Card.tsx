@@ -186,7 +186,7 @@ function CardBack({ cardData }: { cardData: CardType}) {
             <div className={projectsCSS.techGroup}>
             {cardData.mainTech.map((name, index) => (
               <Image
-                key={cardData.name + index}
+                key={`main-${cardData.name}-${index}`}
                 src={`/images/logos/${name}-logo.svg`}
                 width={512}
                 height={512}
@@ -195,7 +195,7 @@ function CardBack({ cardData }: { cardData: CardType}) {
             ))}
             {cardData.sideTech && cardData.sideTech.map((name, index) => (
               <Image
-                key={cardData.name + index}
+                key={`side-${cardData.name}-${index}`}
                 src={`/images/logos/${name}-logo.svg`}
                 width={512}
                 height={512}
