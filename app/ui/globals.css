@@ -24,12 +24,15 @@
   --secondary-color: #F1FEC6;
 }
 
+html {
+  overflow-y: scroll;
+}
+
 ::-webkit-scrollbar {
-    width: 12px;
+    width: 10px;
 }
 ::-webkit-scrollbar-track {
-    background: #f1fec6;
-    border-radius: 10px;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
     background: #395360;

@@ -94,7 +94,7 @@ export default function Page() {
               layout: { type: "spring", stiffness: 100, damping: 20, },
               opacity: { duration: 0.5 },
               y: { type: "spring", stiffness: 100, damping: 20 },
-              rotate: { duration: 1 },
+              rotate: { duration: 0.5 },
             }}>
               <Legend />
         </motion.div>
@@ -109,7 +109,7 @@ export default function Page() {
               layout: { type: "spring", stiffness: 100, damping: 20, },
               opacity: { duration: 0.5 },
               y: { type: "spring", stiffness: 100, damping: 20 },
-              rotate: { duration: 1 },
+              rotate: { duration: 0.5 },
             }}>
               <TechList />
         </motion.div>

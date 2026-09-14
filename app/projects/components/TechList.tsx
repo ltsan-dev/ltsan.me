@@ -8,7 +8,7 @@ import * as images from "@/public/images/logos/index";
 
 export default function() {
     return <div className={projectsCSS.techlist}>
-      <h2>Tech</h2>
+      <h2>Tech List</h2>
       <div>
         {Object.entries(images).map(([name, image], i) => (
           <div key={i}>

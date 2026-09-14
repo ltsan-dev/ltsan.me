@@ -8,6 +8,8 @@ export default function() {
     return <div className={projectsCSS.legend}>
         <h2>Legend</h2>
         <div>
+          <span>Rarities</span>
+          <div>
             <Image src={`/images/ui/rarity-1.png`} width={200} height={200}
               alt={`rarity-1 icon`}/>
             <Image src={`/images/ui/rarity-2.png`} width={200} height={200}
@@ -16,18 +18,22 @@ export default function() {
               alt={`rarity-3 icon`}/>
             <Image src={`/images/ui/rarity-4.png`} width={200} height={200}
               alt={`rarity-4 icon`}/>
-            <span>&nbsp;// RARITY</span>
+          </div>
         </div>
         <div>
+          <span>Project Types</span>
+          <div>
             {Object.values(colors).map((color: string, i) => {
                 return <div key={i} className={projectsCSS.legendBox} style={{ backgroundColor: color }}></div>
             })}
-            <span>&nbsp;// TYPE</span>
+          </div>
         </div>
         <div>
+          <span>Open Link</span>
+          <div>
             <Image src={`/images/ui/link.png`} width={200} height={200}
               alt={`Open link icon`}/>
-            <span>&nbsp;// LINK</span>
+          </div>
         </div>
     </div>
 }
