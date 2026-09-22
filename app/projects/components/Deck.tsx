@@ -23,7 +23,7 @@ export default function Deck({ username, image, setGameOn, gameOn, drawCard }: D
       console.log("Deck clicked!");
       setGameOn(true);
     } else {
-      drawCard();
+      //drawCard(); this adds a card to the list but shows dummy cards atm
     }
   }
 
