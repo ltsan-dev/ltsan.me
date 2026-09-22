@@ -6,3 +6,25 @@
   margin: 1rem;
   width: 80%;
 }
+
+
+.game {
+  aspect-ratio: 1.5 / 1;
+  height: 50vw;
+  display: flex;
+  flex-wrap: wrap;
+}
+.square {
+  aspect-ratio: 1 / 1;
+  height: 5vw;
+  background-color: lightgrey;
+}
+.square.alt {
+  background-color: whitesmoke;
+}
+.square.player {
+  background-color: greenyellow;
+}
+.square.tail {
+  background-color: green;
+}
