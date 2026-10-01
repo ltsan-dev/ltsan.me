@@ -12,16 +12,18 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #F1FEC6;
-    --foreground: #000000;
-  }
-}
-
 :root {
   --primary-color: #74A4BC;
   --secondary-color: #F1FEC6;
+  --background: #F1FEC6;
+  --foreground: #000000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #505833;
+    --foreground: #000000;
+  }
 }
 
 html {
