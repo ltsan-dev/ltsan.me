@@ -67,6 +67,9 @@ export default function Page() {
 
   return <> 
   <div className={clsx(projectsCSS.mainContent, { [projectsCSS.gameOn]: gameOn })}>
+    <div className={projectsCSS.titleDiv}>
+      <h1 className={projectsCSS.title}>Projects</h1>
+    </div>
     <AnimatePresence mode="wait">
       {chosenCard && (
         <motion.div className={projectsCSS.chosenCardMotionDiv}
@@ -83,36 +86,7 @@ export default function Page() {
     <Deck username="Lance" setGameOn={setGameOn} gameOn={gameOn} drawCard={drawCard} image={"/images/personal/nrt-ramen.gif"} />
     {gameOn && <motion.div layout className={clsx(projectsCSS.handContainer, { [projectsCSS.gameOn]: gameOn })}>
       <AnimatePresence mode="popLayout">
-        <motion.div
-            layout
-            key="legend"
-            className={projectsCSS.legendMotionDiv}
-            initial={{ opacity: 0, y: 40, rotate: -5 }}
-            animate={{ opacity: 1, y: 0, rotate: 0 }}
-            exit={{ opacity: 0, y: 40, rotate: 5, transition: { delay: 0 } }}
-            transition={{
-              layout: { type: "spring", stiffness: 100, damping: 20, },
-              opacity: { duration: 0.5 },
-              y: { type: "spring", stiffness: 100, damping: 20 },
-              rotate: { duration: 0.5 },
-            }}>
-              <Legend />
-        </motion.div>
-        <motion.div
-            layout
-            key="techlist"
-            className={projectsCSS.techlistMotionDiv}
-            initial={{ opacity: 0, y: 40, rotate: -5 }}
-            animate={{ opacity: 1, y: 0, rotate: 0 }}
-            exit={{ opacity: 0, y: 40, rotate: 5, transition: { delay: 0 } }}
-            transition={{
-              layout: { type: "spring", stiffness: 100, damping: 20, },
-              opacity: { duration: 0.5 },
-              y: { type: "spring", stiffness: 100, damping: 20 },
-              rotate: { duration: 0.5 },
-            }}>
-              <TechList />
-        </motion.div>
+        
         {cards.map((item, i) => (
           <motion.div
             layout key={item.id}

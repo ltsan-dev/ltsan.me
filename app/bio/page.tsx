@@ -5,6 +5,7 @@ import CardRow from './components/CardRow';
 import * as images from "@/public/images/personal";
 
 export default function Page() {
+  return <p style={{ margin: 'auto' }} >This is the experience page, WIP.</p>
   return <div className='main main-tm'>
       <h1 className={bioCSS.title}>Career-wise, I've been:</h1>
       <CardRow

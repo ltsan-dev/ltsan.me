@@ -11,7 +11,7 @@
   position: fixed;
   z-index: 9;
 
-  width: clamp(320px, 90%, 430px);
+  width: clamp(320px, 90%, 380px);
   margin: 1rem;
   padding: clamp(0.5rem, 2.2vw, 0.8rem);
 
@@ -21,8 +21,7 @@
     transparent
   );
   border: 1px solid #395360;
-  border-radius: 20px;
-  box-shadow: 2px 4px 12px rgb(0 0 0 / 35%);
+  border-radius: 18px;
 
   transition:
     width 0.3s ease,
@@ -40,7 +39,7 @@
   align-self: stretch;
   flex-grow: 0;
 
-  margin: 0 0.6rem 0 0;
+  margin: 0 0.3rem 0 0;
   padding:
     clamp(0px, calc((100vw - 375px) * 0.016), 0.2rem)
     0.6rem

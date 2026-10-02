@@ -16,20 +16,30 @@
   background-color: #00000000;
 }
 
-.userTitle {
-  min-height: 100px;
-  max-height: 500px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  font-size: 3rem;
-  padding-right: 5.5rem;
+.titleDiv {
+  transition: padding 0.5s ease;
+  width: 100%;
+}
+.title {
+  transition: opacity 1s ease;
+  opacity: 0;
+  font-size: 4rem;
+  font-weight: bold;
+  text-align: center;
+}
+.mainContent.gameOn .title {
+  opacity: 1;
 }
 
-.userTitle > div {
-  min-height: 100px;
-  min-width: 400px;
+@media (max-width: 1060px) {
+  .titleDiv {
+    padding-left: 380px;
+  }
+}
+@media (max-width: 780px) {
+  .titleDiv {
+    padding: 4.5rem 0 0 0;
+  }
 }
 
 
@@ -65,12 +75,13 @@
     top 2s ease,
     width 2s ease,
     height 2s ease,
-    padding 2s ease;
-  width: calc(var(--card-width) * 0.4);
+    padding 2s ease,
+    opacity 2s ease;
+  width: calc(var(--card-width) * 0.18);
   padding: 0.5rem;
 
   top: 1rem;
-  right: calc(min(2cqw, 1rem) + 2px); /* 2px for box shadow */
+  right: 1rem; /* 2px for box shadow */
 }
 
 .deckContainer:hover {
@@ -204,7 +215,7 @@
 
 .handContainer {
   gap: 1rem;
-  top: 11rem;
+  top: 7.5rem;
   left: 0;
   padding: 0 min(2cqw, 1rem);
   margin: 2rem 0;

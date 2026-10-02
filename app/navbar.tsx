@@ -22,12 +22,11 @@ export default function NavBar() {
         {pathname === '/projects' ? <Underline /> : ""}
       </div>
       <div>
-        <Link href="/bio" className={navCSS.link}>Bio</Link>
+        <Link href="/bio" className={navCSS.link}>Experience</Link>
         {pathname === '/bio' ? <Underline /> : ""}
-
       </div>
     </div>
-    <Link href="/contact" className={navCSS.button}>Contact</Link>
+    {/* <Link href="/contact" className={navCSS.button}>Contact</Link> */}
   </div>
 }
 
