@@ -9,6 +9,7 @@ import ReactCardFlip from 'react-card-flip';
 import clsx from 'clsx';
 
 import { useState, useRef, useEffect } from 'react';
+import { useReducedMotion } from 'motion/react';
 import { Card as CardType } from '@/app/lib/definitions';
 
 type CardProps = {
@@ -20,39 +21,62 @@ type CardProps = {
 
 type TiltLayerProps = {
   setFlipped: React.Dispatch<React.SetStateAction<boolean>>;
-  clicked: boolean;
   children: React.ReactNode;
-  cardData: CardType;
 };
 
 const TRANS_MS: number = 250;
 
 export default function Card({cardData, chosenData, setChosenCard, setCards }: CardProps) {
   const chosen = chosenData !== null && cardData.id === chosenData.id;
-  const [clicked, setClicked] = useState(false);
   const [flipped, setFlipped] = useState(chosen);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (chosen) cardRef.current?.focus();
+  }, [chosen]);
 
   useEffect(() => {
     if (!chosen) return;
 
+    function closeChosenCard() {
+      setChosenCard(null);
+      setTimeout(() => {
+        setCards(prev => {
+          if (!chosenData) return prev;
+          return [...prev, chosenData];
+        });
+        setTimeout(() => {
+          document.getElementById(`project-card-${cardData.id}`)?.focus();
+        }, 0);
+      }, shouldReduceMotion ? 0 : TRANS_MS);
+    }
+
     function handleOutsideClick(e: MouseEvent) {
       const target = e.target as HTMLElement;
       if (!target.closest(`.${projectsCSS.chosen}`)) {
-        setChosenCard(null);
-        setTimeout(() => {setCards(prev => {
-            if (!chosenData) return prev;
-            return [...prev, chosenData];
-        });}, TRANS_MS);
+        closeChosenCard();
+      }
+    }
+
+    function handleEscape(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeChosenCard();
       }
     }
 
     document.addEventListener('click', handleOutsideClick);
+    document.addEventListener('keydown', handleEscape);
     return () => {
       document.removeEventListener('click', handleOutsideClick);
+      document.removeEventListener('keydown', handleEscape);
     };
-  }, [chosen, setChosenCard]);
+  }, [chosen, chosenData, cardData.id, setCards, setChosenCard, shouldReduceMotion]);
 
-  function handleCardClick() {
+  function handleCardClick(e?: React.MouseEvent<HTMLDivElement>) {
+    if (e?.target instanceof Element && e.target.closest('a')) return;
+
     document.body.style.backgroundColor = cardData.colors[0];
 
     if (!chosenData || cardData.id !== chosenData.id) {
@@ -63,14 +87,33 @@ export default function Card({cardData, chosenData, setChosenCard, setCards }: C
         return chosenData ? [...filtered, chosenData] : filtered;
       });
     } else {
-      setClicked(prev => !prev);
+      setFlipped(prev => !prev);
+    }
+  }
+
+  function handleCardKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
+    if (e.target !== e.currentTarget) return;
+
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleCardClick();
     }
   }
 
 
   return (
-    <div className={clsx(projectsCSS.cardContainer, projectsCSS["rarity-" + cardData.rarity], {[projectsCSS.chosen]: chosen })} onClick={handleCardClick}>
-      <TiltLayer setFlipped={setFlipped} clicked={clicked} cardData={cardData}>
+    <div
+      id={`project-card-${cardData.id}`}
+      ref={cardRef}
+      className={clsx(projectsCSS.cardContainer, projectsCSS["rarity-" + cardData.rarity], {[projectsCSS.chosen]: chosen })}
+      onClick={handleCardClick}
+      onKeyDown={handleCardKeyDown}
+      role="group"
+      tabIndex={0}
+      aria-expanded={chosen}
+      aria-label={`${cardData.name}, ${cardData.type} project. ${chosen ? 'Press Enter or Space to flip; press Escape to close.' : 'Press Enter or Space to open.'}`}
+    >
+      <TiltLayer setFlipped={setFlipped}>
         <ReactCardFlip 
           isFlipped={flipped}
           flipDirection="horizontal" 
@@ -85,6 +128,7 @@ export default function Card({cardData, chosenData, setChosenCard, setCards }: C
 
 function TiltLayer({ setFlipped, children }: TiltLayerProps) {
   const flipTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   function clearFlipTimeout() {
     if (flipTimeout.current !== null) {
@@ -109,17 +153,18 @@ function TiltLayer({ setFlipped, children }: TiltLayerProps) {
     }, TRANS_MS);
   }
   return <Tilt
+      tiltEnable={!shouldReduceMotion}
       tiltMaxAngleX={15}
       tiltMaxAngleY={15}
       perspective={3000}
-      transitionSpeed={TRANS_MS}
-      scale={1.02}
-      glareEnable={true}
+      transitionSpeed={shouldReduceMotion ? 0 : TRANS_MS}
+      scale={shouldReduceMotion ? 1 : 1.02}
+      glareEnable={!shouldReduceMotion}
       glareMaxOpacity={0.3}
       glareBorderRadius="5px"
       className={clsx(projectsCSS.cardContainerTilt)}
-      onEnter={handleEnter}
-      onLeave={handleLeave}
+      onEnter={shouldReduceMotion ? undefined : handleEnter}
+      onLeave={shouldReduceMotion ? undefined : handleLeave}
     >
       {children}</Tilt>
 }
@@ -162,7 +207,7 @@ function CardFront({ cardData }: { cardData: CardType }) {
 }
 
 function CardBack({ cardData }: { cardData: CardType}) {
-    const startDateText = cardData.dates.start.toLocaleString(
+  const startDateText = cardData.dates.start.toLocaleString(
     'default',
     { month: 'short', year: 'numeric' }
   );
@@ -184,7 +229,7 @@ function CardBack({ cardData }: { cardData: CardType}) {
                   className={projectsCSS.logo}
                 />
               <h1 style={cardData.id === '5' ? { fontSize: '8.2cqw' } : undefined} className={figtree.className}>{cardData.name}</h1>
-              <a href={cardData.link} target="_blank" rel="noopener noreferrer">
+              <a href={cardData.link} target="_blank" rel="noopener noreferrer" aria-label={`Open ${cardData.name} project in a new tab`}>
                 <Image
                   src="/images/ui/link.png"
                   width={27}

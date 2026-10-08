@@ -28,9 +28,16 @@ export default function Deck({ username, image, setGameOn, gameOn, drawCard }: D
   }
 
 
-  return <div className={clsx(projectsCSS.deckContainer, { [projectsCSS.gameOn]: gameOn })} onClick={handleDeckClick}>
-    <h3 className={clsx(figtree.className)}>{username}'s Deck</h3>
-    {image ? <Image src={image} width={512} height={512} alt={`Profile picture of ${username}`}/>
+  return <button
+    type="button"
+    className={clsx(projectsCSS.deckContainer, { [projectsCSS.gameOn]: gameOn })}
+    onClick={handleDeckClick}
+    aria-disabled={gameOn}
+    aria-expanded={gameOn}
+    aria-label={gameOn ? `${username}'s project deck, cards displayed` : `Show ${username}'s project cards`}
+  >
+    <span className={clsx(projectsCSS.deckTitle, figtree.className)}>{username}'s Deck</span>
+    {image ? <Image src={image} width={512} height={512} alt=""/>
     : <span className={projectsCSS.deckLetter}>{firstLetter}</span>}
-  </div>;
+  </button>;
 }

@@ -1,7 +1,7 @@
 "use client"
 
 import projectsCSS from '@/app/ui/projects.module.css';
-import { AnimatePresence, motion } from "motion/react"
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
 
 import Deck from '@/app/projects/components/Deck';
@@ -21,6 +21,7 @@ export default function Page() {
   const [cards, setCards] = useState<CardType[]>(cardsData);
   const [chosenCard, setChosenCard] = useState<CardType | null>(null);
   const prevCardCount = useRef(cards.length);
+  const shouldReduceMotion = useReducedMotion();
 
   const animationOptions = {
     layout: true,
@@ -74,26 +75,26 @@ export default function Page() {
       {chosenCard && (
         <motion.div className={projectsCSS.chosenCardMotionDiv}
           key={chosenCard.id}
-          initial={{ opacity: 0, y: 90, rotate: 5 }}
-          animate={{ opacity: 1, y: 0, rotate: 0 }}
-          exit={{ opacity: 0, y: 90, rotate: -5 }}
-          transition={{ duration: 0.3 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 90, rotate: 5 }}
+          animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, rotate: 0 }}
+          exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 90, rotate: -5 }}
+          transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.3 }}
         >
         <Card cardData={chosenCard} setChosenCard={setChosenCard} chosenData={chosenCard} setCards={setCards} />
         </motion.div>
       )}
     </AnimatePresence>
     <Deck username="Lance" setGameOn={setGameOn} gameOn={gameOn} drawCard={drawCard} image={"/images/personal/nrt-ramen.gif"} />
-    {gameOn && <motion.div layout className={clsx(projectsCSS.handContainer, { [projectsCSS.gameOn]: gameOn })}>
+    {gameOn && <motion.div layout={!shouldReduceMotion} className={clsx(projectsCSS.handContainer, { [projectsCSS.gameOn]: gameOn })}>
       <AnimatePresence mode="popLayout">
         
         {cards.map((item, i) => (
           <motion.div
-            layout key={item.id}
-            initial={{ opacity: 0, y: 40, rotate: -5 }}
-            animate={{ opacity: 1, y: 0, rotate: 0 }}
-            exit={{ opacity: 0, y: 40, rotate: 5, transition: { delay: 0 } }}
-            transition={{
+            layout={!shouldReduceMotion} key={item.id}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 40, rotate: -5 }}
+            animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, rotate: 0 }}
+            exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 40, rotate: 5, transition: { delay: 0 } }}
+            transition={shouldReduceMotion ? { duration: 0 } : {
               layout: { type: "spring", stiffness: 100, damping: 20, },
               opacity: { duration: 0.2, delay: (prevCardCount.current > i ? i * 0.5 : 0), },
               y: { type: "spring", stiffness: 100, damping: 20, delay: (prevCardCount.current > i ? i * 0.5 : 0), },
