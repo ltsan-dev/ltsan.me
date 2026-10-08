@@ -10,7 +10,7 @@ const cards: Card[] = [
     colors: [colors.fs],
     name: 'DubCards',
     desc: 'DubCards is a University of Washington-themed trading card game where users can buy, sell, favorite, and trade digital cards with friends.',
-    mainTech: ['Node.js', 'Express', 'MongoDB', 'JavaScript', 'Azure'],
+    mainTech: ['Express', 'MongoDB',  'Azure', 'Node.js', 'JavaScript'],
     sideTech: ['Mongoose', 'HTML', 'CSS'],
     link: 'https://dubcards.onrender.com', 
     dates: {
@@ -55,7 +55,7 @@ const cards: Card[] = [
     colors: [colors.fe],
     name: 'Blitz Fantasy',
     desc: 'A web application that provides a complete fantasy football experience, serving up live NFL metrics and real-time league data for users.',
-    mainTech: ['React', 'JavaScript', 'Firebase', 'HTML', 'CSS'],
+    mainTech: ['React', 'Firebase', 'HTML', 'JavaScript', 'CSS'],
     sideTech: ['Git'],
     link: 'https://blitz-fantasy.web.app/',
     dates: {
@@ -70,7 +70,7 @@ const cards: Card[] = [
     colors: [colors.fs],
     name: 'BALLER//BROWSER',
     desc: 'A fantasy basketball marketplace and lineup builder where users can browse, search, and purchase NBA players to assemble custom rosters.',
-    mainTech: ['Node.js', 'Express', 'JavaScript', 'SQL', 'R'],
+    mainTech: ['Express', 'SQL', 'R', 'JavaScript', 'Node.js'],
     sideTech: ['HTML', 'CSS'],
     link: 'https://baller-browser.onrender.com/', 
     dates: {
