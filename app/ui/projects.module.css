@@ -521,21 +521,28 @@
 }
 
 @media (max-width: 580px) {
+  .cardContainer.chosen {
+    touch-action: none;
+  }
+
+  .titleDiv {
+    margin-top: 1rem;
+  }
   .mainContent .deckContainer.gameOn {
-    top: 5.5rem;
+    top: 6.5rem;
     right: calc(2.5cqw + 2px); /* 2px for box shadow */
   }
   .mainContent .legend {
-    top: 1rem;
+    top: 2rem;
     right: calc(100vw - 2.5cqw - 8rem - 10px); /* 10px for scrollbar */
   }
   .techlist {
-    top: 1rem;
+    top: 2rem;
     width: calc(100vw - 11.7rem - var(--card-width) * 0.4);
     right: 8.6rem;
   }
   .handContainer {
-    top: 15.5rem;
+    top: 11.5rem;
     padding: 0 2.5cqw;
     grid-template-columns: repeat(auto-fit, minmax(min(110px, 100%), 1fr));
     gap: 0.5rem;

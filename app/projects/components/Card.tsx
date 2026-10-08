@@ -22,6 +22,7 @@ type CardProps = {
 type TiltLayerProps = {
   setFlipped: React.Dispatch<React.SetStateAction<boolean>>;
   children: React.ReactNode;
+  tiltEnabled: boolean;
 };
 
 const TRANS_MS: number = 250;
@@ -29,8 +30,19 @@ const TRANS_MS: number = 250;
 export default function Card({cardData, chosenData, setChosenCard, setCards }: CardProps) {
   const chosen = chosenData !== null && cardData.id === chosenData.id;
   const [flipped, setFlipped] = useState(chosen);
+  const [isMobile, setIsMobile] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
+  const tiltEnabled = !shouldReduceMotion && (!isMobile || chosen);
+
+  useEffect(() => {
+    const mobileQuery = window.matchMedia('(max-width: 580px)');
+    const updateMobile = () => setIsMobile(mobileQuery.matches);
+
+    updateMobile();
+    mobileQuery.addEventListener('change', updateMobile);
+    return () => mobileQuery.removeEventListener('change', updateMobile);
+  }, []);
 
   useEffect(() => {
     if (chosen) cardRef.current?.focus();
@@ -113,7 +125,7 @@ export default function Card({cardData, chosenData, setChosenCard, setCards }: C
       aria-expanded={chosen}
       aria-label={`${cardData.name}, ${cardData.type} project. ${chosen ? 'Press Enter or Space to flip; press Escape to close.' : 'Press Enter or Space to open.'}`}
     >
-      <TiltLayer setFlipped={setFlipped}>
+      <TiltLayer setFlipped={setFlipped} tiltEnabled={tiltEnabled}>
         <ReactCardFlip 
           isFlipped={flipped}
           flipDirection="horizontal" 
@@ -126,9 +138,8 @@ export default function Card({cardData, chosenData, setChosenCard, setCards }: C
   );
 }
 
-function TiltLayer({ setFlipped, children }: TiltLayerProps) {
+function TiltLayer({ setFlipped, children, tiltEnabled }: TiltLayerProps) {
   const flipTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const shouldReduceMotion = useReducedMotion();
 
   function clearFlipTimeout() {
     if (flipTimeout.current !== null) {
@@ -153,18 +164,18 @@ function TiltLayer({ setFlipped, children }: TiltLayerProps) {
     }, TRANS_MS);
   }
   return <Tilt
-      tiltEnable={!shouldReduceMotion}
+      tiltEnable={tiltEnabled}
       tiltMaxAngleX={15}
       tiltMaxAngleY={15}
       perspective={3000}
-      transitionSpeed={shouldReduceMotion ? 0 : TRANS_MS}
-      scale={shouldReduceMotion ? 1 : 1.02}
-      glareEnable={!shouldReduceMotion}
+      transitionSpeed={tiltEnabled ? TRANS_MS : 0}
+      scale={tiltEnabled ? 1.02 : 1}
+      glareEnable={tiltEnabled}
       glareMaxOpacity={0.3}
       glareBorderRadius="5px"
       className={clsx(projectsCSS.cardContainerTilt)}
-      onEnter={shouldReduceMotion ? undefined : handleEnter}
-      onLeave={shouldReduceMotion ? undefined : handleLeave}
+      onEnter={tiltEnabled ? handleEnter : undefined}
+      onLeave={tiltEnabled ? handleLeave : undefined}
     >
       {children}</Tilt>
 }
