@@ -126,28 +126,38 @@ function TiltLayer({ setFlipped, children }: TiltLayerProps) {
 
 
 function CardFront({ cardData }: { cardData: CardType }) {
+  const startDateText = cardData.dates.start.toLocaleString(
+    'default',
+    { month: 'short', year: 'numeric' }
+  );
+
+  const endDateText = cardData.dates.end
+    ? cardData.dates.end.toLocaleString(
+        'default',
+        { month: 'short', year: 'numeric' }
+      )
+    : 'Current';
   return <div className={projectsCSS.cardFront} style={{ backgroundColor: cardData.colors[0] }}>
-            <h1 style={cardData.id === '5' ? { fontSize: '9.2cqw', marginTop: '0.15em' } : undefined} className={figtree.className}>{cardData.name}</h1>
+            <h1 style={cardData.id === '5' ? { fontSize: '9.2cqw' } : undefined} className={figtree.className}>{cardData.name}</h1>
+            <h1 className={figtree.className}>{cardData.type}</h1>
             <div className={projectsCSS.mainTechGroup}>
-            {cardData.mainTech.map((name, index) => (
+            {cardData.mainTech.slice(0, 3).map((name, index) => (
               <div key={cardData.name + index} className={projectsCSS.mainTech}>
                 <Image
                   src={`/images/logos/${name}-logo.svg`}
                   width={512}
                   height={512}
                   className={projectsCSS.mainTechLogo}
-                  alt={`Logo of ${name}`} />
+                  alt="" />
                 <span className={figtree.className}>{name}</span>
               </div>
             ))}
             </div>
-            <hr className={projectsCSS.rightLine}></hr>
-            <hr className={projectsCSS.leftLine}></hr>
-            <Image
+            <span className={figtree.className}>{startDateText + ' - ' + endDateText}</span>
+            {/* <Image
               src={`/images/ui/rarity-${cardData.rarity}.png`}
               width={200} height={200}
-              alt={`Star icon`} className={projectsCSS.starLogo}/>
-            <h1 className={figtree.className}>{cardData.type}</h1>
+              alt={`Star icon`} className={projectsCSS.starLogo}/> */}
           </div>
 }
 
