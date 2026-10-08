@@ -36,7 +36,7 @@ export default function Deck({ username, image, setGameOn, gameOn, drawCard }: D
     aria-expanded={gameOn}
     aria-label={gameOn ? `${username}'s project deck, cards displayed` : `Show ${username}'s project cards`}
   >
-    <span className={clsx(projectsCSS.deckTitle, figtree.className)}>{username}'s Deck</span>
+    <span className={clsx(projectsCSS.deckTitle, figtree.className)}>Projects Deck</span>
     {image ? <Image src={image} width={512} height={512} alt=""/>
     : <span className={projectsCSS.deckLetter}>{firstLetter}</span>}
   </button>;
