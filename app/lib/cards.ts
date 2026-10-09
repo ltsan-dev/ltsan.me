@@ -14,8 +14,8 @@ const cards: Card[] = [
     sideTech: ['Mongoose', 'HTML', 'CSS'],
     link: 'https://dubcards.onrender.com', 
     dates: {
-      start: new Date('2026-01-01'),
-      end: null,
+      start: new Date('2025-12-30'),
+      end: new Date('2026-6-23'),
     },
   },
   {
@@ -29,7 +29,7 @@ const cards: Card[] = [
     sideTech: ['HTML', 'CSS'],
     link: 'https://ltsan-dev.github.io/NBA-Data-Visualization/',
     dates: {
-      start: new Date('2025-09-01'),
+      start: new Date('2025-09-02'),
       end: new Date('2025-12-01'),
     },
   },
@@ -45,7 +45,7 @@ const cards: Card[] = [
     link: 'https://figma.com/proto/8B0SUiATbq15taR0tzoWoL/Career-Path-App',
     dates: {
       start: new Date('2025-04-01'),
-      end: new Date('2025-06-01'),
+      end: new Date('2025-06-02'),
     },
   },
   {
@@ -60,7 +60,7 @@ const cards: Card[] = [
     link: 'https://blitz-fantasy.web.app/',
     dates: {
       start: new Date('2025-04-01'),
-      end: new Date('2025-06-01'),
+      end: new Date('2025-06-02'),
     },
   },
   {
@@ -75,7 +75,7 @@ const cards: Card[] = [
     link: 'https://baller-browser.onrender.com/', 
     dates: {
       start: new Date('2024-04-01'),
-      end: new Date('2024-06-01'),
+      end: new Date('2024-06-02'),
     },
   },
   {
@@ -89,8 +89,8 @@ const cards: Card[] = [
     sideTech: ['HTML', 'CSS'],
     link: 'https://lebrons-legacy.onrender.com/',
     dates: {
-      start: new Date('2024-06-01'),
-      end: new Date('2024-08-01'),
+      start: new Date('2024-04-01'),
+      end: new Date('2024-05-01'),
     },
   }
 ];
