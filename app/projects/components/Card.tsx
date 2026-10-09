@@ -204,7 +204,8 @@ function CardFront({ cardData }: { cardData: CardType }) {
                   width={512}
                   height={512}
                   className={projectsCSS.mainTechLogo}
-                  alt="" />
+                  alt=""
+                  title={name} />
                 <span className={figtree.className}>{name}</span>
               </div>
             ))}
@@ -257,7 +258,8 @@ function CardBack({ cardData }: { cardData: CardType}) {
                 width={512}
                 height={512}
                 className={projectsCSS.mainTechLogo}
-                alt={`Logo of ${name}`} />
+                alt={`Logo of ${name}`}
+                title={name} />
             ))}
             {cardData.sideTech && cardData.sideTech.map((name, index) => (
               <Image
@@ -266,7 +268,8 @@ function CardBack({ cardData }: { cardData: CardType}) {
                 width={512}
                 height={512}
                 className={projectsCSS.mainTechLogo}
-                alt={`Logo of ${name}`} />
+                alt={`Logo of ${name}`}
+                title={name} />
             ))}
             </div>
             <div className={projectsCSS.scDiv}>

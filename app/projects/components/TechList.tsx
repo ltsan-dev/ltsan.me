@@ -12,7 +12,7 @@ export default function() {
       <div>
         {Object.entries(images).map(([name, image], i) => (
           <div key={i}>
-            <Image src={image} alt={`${name} logo`} />
+            <Image src={image} alt={`${name} logo`} title={name} />
             <span>{name}</span>
           </div>
         ))}
