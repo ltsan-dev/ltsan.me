@@ -32,16 +32,6 @@
   opacity: 1;
 }
 
-@media (max-width: 1060px) {
-  .titleDiv {
-    padding-left: 380px;
-  }
-}
-@media (max-width: 780px) {
-  .titleDiv {
-    padding: 4.5rem 0 0 0;
-  }
-}
 
 
 .deckContainer {
@@ -497,7 +487,17 @@
 }
 
 
-@media (max-width: 1015px) and (min-width: 581px) {
+@media (max-width: 1200px) {
+  .titleDiv {
+    padding: 4.5rem 0 0 0;
+  }
+  .handContainer {
+    top: 12rem;
+    padding: 0 2.5cqw;
+  }
+}
+
+@media (max-width: 1200px) and (min-width: 581px) {
   .mainContent .legend {
     top: calc(13rem);
     right: calc(100vw - 1.5rem - 420px);
@@ -547,8 +547,6 @@
     right: 8.6rem;
   }
   .handContainer {
-    top: 11.5rem;
-    padding: 0 2.5cqw;
     grid-template-columns: repeat(auto-fit, minmax(min(110px, 100%), 1fr));
     gap: 0.5rem;
   }

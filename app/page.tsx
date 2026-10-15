@@ -1,8 +1,6 @@
-import { figtree } from './ui/fonts';
+import Link from 'next/link';
 import Image from 'next/image';
 import homeCSS from './ui/home.module.css';
-
-import Game from './home-components/Game';
 
 import * as images from "@/public/images/personal";
 
@@ -18,8 +16,8 @@ export default function Home() {
       </div>
       <div>
         <div className={homeCSS.titleDiv}><h2 className={homeCSS.sectionTitle}>About Me</h2></div>
-        <p>I am a passionate developer, experienced in creating interactive full-stack applications. I have a wide amount of experience and knowledge in design, Human-Computer Interaction, data vizualization, data science, machine learning and information architecture.
-           I am currently a student at the University of Washington majoring in Informatics with a Data Science option.</p>
+        <p>I am a passionate developer, experienced in creating interactive full-stack applications. I have a wide amount of experience and knowledge in design, data vizualization, data science, machine learning, research methods and information architecture.
+           I use all of these skills to engineer the best, complete application to solve problems. I am currently a student at the University of Washington majoring in Informatics with a Data Science option and Software Engineering focus.</p>
       </div>
       <div>
         <div className={homeCSS.titleDiv}><h2 className={homeCSS.sectionTitle}>Career Highlights</h2></div>
@@ -29,6 +27,25 @@ export default function Home() {
           <li>Achieved Dean's List for 7 consecutive quarters, maintaining a high GPA throughout my academic career.</li>
           <li>Designed and presented an interactive p5.js visualization that tells a story about international players in the NBA.</li>
         </ul>
+      </div>
+      <div>
+        <div className={homeCSS.titleDiv}><h2 className={homeCSS.sectionTitle}>Contact Info</h2></div>
+        <p>
+          LinkedIn:{' '}
+          <Link href="https://www.linkedin.com/in/lance-santos-" target="_blank" rel="noopener noreferrer" className={homeCSS.contactLink}>
+            Lance Santos
+          </Link>
+        </p>
+        <p>
+          GitHub:{' '}
+          <Link href="https://github.com/ltsan-dev" target="_blank" rel="noopener noreferrer" className={homeCSS.contactLink}>
+            ltsan-dev
+          </Link>
+        </p>
+        <p>
+          Email:{' '}
+          <Link href="mailto:lan30san@gmail.com" className={homeCSS.contactLink}>lan30san@gmail.com</Link>
+        </p>
       </div>
     </div>
   </div>

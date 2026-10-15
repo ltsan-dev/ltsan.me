@@ -12,7 +12,7 @@
   z-index: 9;
 
   width: clamp(320px, 90%, 380px);
-  margin: 1rem;
+  margin: 1.5rem 1rem 1rem 1rem;
   padding: clamp(0.5rem, 2.2vw, 0.8rem);
 
   background-color: color-mix(
@@ -139,8 +139,9 @@
 
 /* Mobile positioning */
 
-@media (max-width: 580px) {
+@media (max-width: 1200px) {
   .navbar {
-    transform: translateX(calc(50vw - 50% - 1rem));
+    transform: translateX(calc(50vw - 50% - 2rem)); /*2rem for margin + body padding*/
+    margin: 1rem;
   }
 }
