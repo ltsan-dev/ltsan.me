@@ -9,10 +9,11 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "clsx": "^2.1.1",
     "material-symbols": "^0.44.10",
     "motion": "^12.40.0",
-    "next": "16.2.3",
+    "next": "^16.4.2",
     "react": "19.2.4",
     "react-card-flip": "^1.2.3",
     "react-dom": "19.2.4",
@@ -24,7 +25,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.2.3",
+    "eslint-config-next": "^16.4.2",
     "tailwindcss": "^4",
     "typescript": "^5"
   },

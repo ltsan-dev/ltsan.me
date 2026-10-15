@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next"
 import { Geist, Geist_Mono } from "next/font/google";
 import "./ui/globals.css";
 import { inter } from './ui/fonts';
@@ -36,6 +37,7 @@ export default function RootLayout({
       <body className={`${inter.className} min-h-full flex flex-col`}>
         <NavBar />
         {children}
+        <Analytics />
       </body>
     </html>
   );
