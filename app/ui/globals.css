@@ -55,6 +55,12 @@ body {
   padding: 1rem;
 }
 
+@media (max-width: 1200px) {
+  body {
+      padding-top: 0;
+  }
+}
+
 body.bodyDim {
   background-color: #000000c0;
 }

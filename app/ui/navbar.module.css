@@ -12,7 +12,7 @@
   z-index: 9;
 
   width: clamp(320px, 90%, 380px);
-  margin: 1.5rem 1rem 1rem 1rem;
+  margin: 1rem;
   padding: clamp(0.5rem, 2.2vw, 0.8rem);
 
   background-color: color-mix(

@@ -22,10 +22,10 @@ export default function Home() {
       <div>
         <div className={homeCSS.titleDiv}><h2 className={homeCSS.sectionTitle}>Career Highlights</h2></div>
         <ul className={homeCSS.list}>
-          <li>Built DubCards in a team of 4 using an Express backend, MongoDB, and hosted on Azure.</li>
-          <li>Developed BALLER//BROWSER with a partner, an NBA player buying and selling platform.</li>
-          <li>Achieved Dean's List for 7 consecutive quarters, maintaining a high GPA throughout my academic career.</li>
-          <li>Designed and presented an interactive p5.js visualization that tells a story about international players in the NBA.</li>
+          <li>Worked in a total of 14 teams over 3 years, developing applications, creating designs, presenting findings, coding visualizations and more.</li>
+          <li>Enginnered multiple full-stack applications using various technologies, including React, Firebase, Azure, Express, MongoDB and more.</li>
+          <li>Achieved Dean's List for 7 consecutive quarters while being engaged in a wide variety of intense classes such as Data Structures, Algorithms, Data Science, Artificial Intelligence, C and C++, Design, Software Architecture, Databases and more.</li>
+          <li>Programmed this website and other personal projects while juggling classes and life.</li>
         </ul>
       </div>
       <div>
@@ -45,6 +45,10 @@ export default function Home() {
         <p>
           Email:{' '}
           <Link href="mailto:lan30san@gmail.com" className={homeCSS.contactLink}>lan30san@gmail.com</Link>
+        </p>
+        <p>
+          LeetCode:{' '}
+          <Link href="https://leetcode.com/u/ltsan-dev/" className={homeCSS.contactLink}>ltsan-dev</Link>
         </p>
       </div>
     </div>
